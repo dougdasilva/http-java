@@ -8,24 +8,21 @@ import java.net.http.HttpResponse;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ExecuteRequestTest {
+public class ExecuteRequestStatusCodeTest {
 
     private HttpResponse<String> response;
-    private int timeout = 10000;
-    private int statusCode;
-    private Map<String, String> headers = new HashMap<>();
+    private final int timeout = 10000;
+    private final Map<String, String> headers = new HashMap<>();
 
     @Test
     void testGetStatusCodeSuccess() {
         response = ExecuteRequest.getRequest("https://http.cat/", timeout, headers);
-        statusCode = response.statusCode();
-        Assertions.assertEquals(200, statusCode);
+        Assertions.assertEquals(200, response.statusCode());
     }
 
     @Test
     void testGetStatusCodeBlocked() {
         response = ExecuteRequest.getRequest("https://super.walmart.com.mx/", timeout, headers);
-        statusCode = response.statusCode();
-        Assertions.assertEquals(403, statusCode);
+        Assertions.assertEquals(403, response.statusCode());
     }
 }
