@@ -1,5 +1,7 @@
 package http;
 
+import credentials.EnvironmentVariables;
+
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -14,7 +16,7 @@ public class Request {
     private static final Logger LOGGER = Logger.getLogger(Request.class.getName());
     private static final HttpClient CLIENT = HttpClient.newBuilder()
             .followRedirects(HttpClient.Redirect.NORMAL)
-            .connectTimeout(Duration.ofMillis(5000))
+            .connectTimeout(Duration.ofMillis(EnvironmentVariables.getConnectTimeout()))
             .build();
 
     public static HttpResponse<String> execute(String url, int timeout,
@@ -39,4 +41,5 @@ public class Request {
             throw new RuntimeException("Erro ao executar requisição HTTP", e);
         }
     }
+
 }
