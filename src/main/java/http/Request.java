@@ -16,7 +16,7 @@ public class Request {
     private static final Logger LOGGER = Logger.getLogger(Request.class.getName());
     private static final HttpClient CLIENT = HttpClient.newBuilder()
             .followRedirects(HttpClient.Redirect.NORMAL)
-            .connectTimeout(Duration.ofMillis(EnvironmentVariables.getConnectTimeout()))
+            .connectTimeout(Duration.ofMillis(EnvironmentVariables.connectTimeout))
             .build();
 
     public static HttpResponse<String> execute(String url, int timeout,

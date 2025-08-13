@@ -40,9 +40,17 @@ public class GetRequestTest {
 
     @Test
     void testGetStatusCodeBlocked() {
-        logger.info("test -> Status code 403 (Forbidden Selector");
+        logger.info("test -> Status code 403 (Forbidden Selector)");
         response = Request.execute("https://super.walmart.com.mx/", timeout, headers,
                 method, bodyPublisher, version);
         Assertions.assertEquals(403, response.statusCode());
+    }
+
+    @Test
+    void testGetStatusCodeBadRequest() {
+        logger.info("test -> Status code 400 (Bad Request)");
+        response = Request.execute("https://api.vtex.com/", timeout, headers,
+                method, bodyPublisher, version);
+        Assertions.assertEquals(400, response.statusCode());
     }
 }
