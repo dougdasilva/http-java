@@ -34,7 +34,6 @@ public class GetRequestTest {
         logger.info("test -> Status code 200 (Success)");
         response = Request.execute("https://http.cat/", timeout, headers,
                 method, bodyPublisher, version);
-        assert response != null;
         Assertions.assertEquals(200, response.statusCode());
     }
 
